@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>Salia Media | SMM Kursu</title>
+<style>
+  :root{
+    --black:#111111;
+    --yellow:#FFC800;
+    --white:#ffffff;
+    --gray:#f4f4f4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;}
+  html{scroll-behavior:smooth;color-scheme:light;}
+  body{background:var(--white);color:var(--black);overflow-x:hidden;color-scheme:light;}
+
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+
+  /* HEADER */
+  header{
+    position:fixed;top:0;left:0;width:100%;
+    background:var(--black);
+    z-index:1000;
+    box-shadow:0 2px 10px rgba(0,0,0,.2);
+  }
+  .nav{
+    max-width:1200px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;
+  }
+  .logo{
+    font-size:22px;font-weight:800;color:var(--white);
+    letter-spacing:1px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .logo span{color:var(--yellow);}
+  .logo img{height:38px;width:38px;border-radius:50%;object-fit:cover;}
+  .nav-links{display:flex;gap:30px;}
+  .nav-links a{
+    color:var(--white);font-weight:600;font-size:15px;
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--yellow);}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+  .burger div{width:26px;height:3px;background:var(--yellow);border-radius:2px;}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    display:flex;align-items:center;
+    background:linear-gradient(135deg,var(--black) 60%, #1a1a1a 100%);
+    padding:120px 20px 60px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;right:-100px;top:-100px;
+    width:400px;height:400px;
+    background:var(--yellow);
+    border-radius:50%;
+    opacity:.15;
+  }
+  .hero-inner{
+    max-width:1200px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:40px;flex-wrap:wrap;
+    width:100%;position:relative;z-index:2;
+  }
+  .hero-text{flex:1;min-width:280px;}
+  .hero-tag{
+    display:inline-block;background:var(--yellow);color:var(--black);
+    padding:6px 16px;border-radius:30px;font-weight:700;font-size:13px;
+    margin-bottom:20px;letter-spacing:.5px;
+  }
+  .hero-text h1{
+    color:var(--white);font-size:42px;line-height:1.2;margin-bottom:20px;
+  }
+  .hero-text h1 span{color:var(--yellow);}
+  .hero-text p{
+    color:#ddd;font-size:17px;margin-bottom:30px;max-width:500px;
+  }
+  .btn-primary{
+    display:inline-block;background:var(--yellow);color:var(--black);
+    padding:16px 38px;border-radius:8px;font-weight:800;font-size:16px;
+    border:none;cursor:pointer;transition:transform .2s, box-shadow .2s;
+    box-shadow:0 8px 20px rgba(255,200,0,.25);
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 25px rgba(255,200,0,.35);}
+
+  .hero-stats{
+    display:flex;gap:30px;margin-top:40px;flex-wrap:wrap;
+  }
+  .stat{text-align:left;}
+  .stat b{display:block;font-size:26px;color:var(--yellow);}
+  .stat span{color:#ccc;font-size:13px;}
+
+  .hero-visual{
+    flex:1;min-width:280px;display:flex;justify-content:center;
+  }
+  .ig-card{
+    background:var(--white);border-radius:20px;padding:25px;
+    width:100%;max-width:340px;box-shadow:0 20px 50px rgba(0,0,0,.3);
+  }
+  .ig-card-header{display:flex;align-items:center;gap:12px;margin-bottom:15px;}
+  .ig-avatar{
+    width:55px;height:55px;border-radius:50%;
+    background:conic-gradient(from 90deg, var(--yellow), var(--black), var(--yellow));
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;color:var(--white);font-size:14px;
+  }
+  .ig-card-header h4{font-size:15px;}
+  .ig-card-header p{font-size:12px;color:#777;}
+  .ig-followers{
+    display:flex;justify-content:space-around;text-align:center;
+    border-top:1px solid #eee;border-bottom:1px solid #eee;padding:12px 0;margin:12px 0;
+  }
+  .ig-followers div b{display:block;font-size:17px;}
+  .ig-followers div span{font-size:11px;color:#777;}
+
+  /* SECTION COMMON */
+  section{padding:90px 20px;}
+  .container{max-width:1200px;margin:0 auto;}
+  .section-title{text-align:center;margin-bottom:55px;}
+  .section-title p.tag{
+    color:var(--black);background:var(--yellow);display:inline-block;
+    padding:5px 16px;border-radius:20px;font-size:12px;font-weight:800;margin-bottom:12px;
+  }
+  .section-title h2{font-size:34px;}
+  .section-title h2 span{color:var(--yellow);-webkit-text-stroke:1px var(--black);}
+
+  /* SERVICES */
+  .services{background:var(--gray);}
+  .services-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:25px;
+  }
+  .service-card{
+    background:var(--white);padding:35px 25px;border-radius:16px;text-align:center;
+    transition:transform .25s, box-shadow .25s;
+    border:2px solid transparent;
+  }
+  .service-card:hover{
+    transform:translateY(-8px);
+    border-color:var(--yellow);
+    box-shadow:0 15px 30px rgba(0,0,0,.08);
+  }
+  .service-icon{
+    width:60px;height:60px;border-radius:14px;background:var(--black);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 20px;
+    font-size:26px;
+  }
+  .service-card h3{margin-bottom:10px;font-size:18px;}
+  .service-card p{font-size:14px;color:#666;line-height:1.5;}
+
+  /* ABOUT / PROGRAM */
+  .program{
+    display:flex;gap:50px;flex-wrap:wrap;align-items:center;
+  }
+  .program-list{flex:1;min-width:300px;}
+  .program-list li{
+    display:flex;gap:14px;align-items:flex-start;margin-bottom:18px;
+    font-size:15.5px;color:#111111 !important;background:transparent;
+  }
+  .program-list, .program-list li, .program-list h2, .program-list p{color:#111111 !important;}
+  .program-list h2 span{color:#FFC800 !important;-webkit-text-stroke:1px #111111;}
+  .check{
+    min-width:26px;height:26px;background:var(--yellow);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;
+  }
+  .program-box{
+    flex:1;min-width:280px;background:var(--black);color:var(--white);
+    border-radius:20px;padding:40px;position:relative;
+  }
+  .program-box h3{color:var(--yellow);font-size:22px;margin-bottom:20px;}
+  .program-box .price{font-size:38px;font-weight:900;margin:15px 0;}
+  .program-box .price span{font-size:16px;color:#aaa;font-weight:400;}
+  .program-box ul{margin:20px 0;}
+  .program-box ul li{padding:8px 0;border-bottom:1px solid #333;font-size:14px;}
+
+  /* TESTIMONIALS */
+  .testimonials{background:var(--black);color:var(--white);}
+  .testimonials .section-title h2{color:var(--white);}
+  .test-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:25px;
+  }
+  .test-card{
+    background:#1c1c1c;border-radius:16px;padding:30px;
+    border-top:4px solid var(--yellow);
+  }
+  .stars{color:var(--yellow);margin-bottom:15px;font-size:16px;letter-spacing:3px;}
+  .test-card p{font-size:14.5px;color:#ddd;line-height:1.6;margin-bottom:20px;}
+  .test-user{display:flex;align-items:center;gap:12px;}
+  .test-avatar{
+    width:42px;height:42px;border-radius:50%;background:var(--yellow);
+    display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--black);
+  }
+  .test-user h5{font-size:14px;}
+  .test-user span{font-size:12px;color:#999;}
+
+  /* FORM / CTA */
+  .cta{
+    background:var(--yellow);
+    text-align:center;
+  }
+  .cta h2{font-size:32px;margin-bottom:15px;}
+  .cta p{margin-bottom:35px;font-size:16px;max-width:600px;margin-left:auto;margin-right:auto;}
+  .form-box{
+    max-width:520px;margin:0 auto;background:var(--white);padding:40px;border-radius:20px;
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
+  }
+  .form-box input{
+    width:100%;padding:14px 16px;margin-bottom:16px;border:2px solid #eee;border-radius:10px;
+    font-size:15px;outline:none;transition:border .2s;
+  }
+  .form-box input:focus{border-color:var(--yellow);}
+  .form-box button{width:100%;border:none;}
+  .form-msg{margin-top:15px;font-size:14px;color:var(--black);display:none;font-weight:700;}
+
+  /* FOOTER */
+  footer{
+    background:var(--black);color:#aaa;text-align:center;padding:40px 20px;
+  }
+  footer .logo{margin-bottom:15px;}
+  footer p{font-size:13px;}
+  .footer-links{display:flex;justify-content:center;gap:20px;margin:15px 0;flex-wrap:wrap;}
+  .footer-links a{color:#ccc;font-size:14px;}
+  .footer-links a:hover{color:var(--yellow);}
+
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .services-grid{grid-template-columns:repeat(2,1fr);}
+    .test-grid{grid-template-columns:1fr;}
+  }
+  @media(max-width:768px){
+    .nav-links{
+      position:absolute;top:100%;left:0;width:100%;
+      background:var(--black);flex-direction:column;
+      max-height:0;overflow:hidden;transition:max-height .3s ease;
+      gap:0;
+    }
+    .nav-links.open{max-height:300px;}
+    .nav-links a{padding:15px 25px;width:100%;border-top:1px solid #222;}
+    .burger{display:flex;}
+    .hero-text h1{font-size:30px;}
+    section{padding:60px 16px;}
+    .section-title h2{font-size:26px;}
+  }
+  @media(max-width:500px){
+    .services-grid{grid-template-columns:1fr;}
+    .hero-stats{gap:18px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">SALIA<span>.</span>MEDIA</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services">Xidmətlər</a></li>
+      <li><a href="#program">Proqram</a></li>
+      <li><a href="#reviews">Rəylər</a></li>
+      <li><a href="https://wa.me/994556166220" target="_blank" rel="noopener">Qeydiyyat</a></li>
+    </ul>
+    <div class="burger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <div></div><div></div><div></div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-tag">📌 SMM · MOBİLOQRAFİYA · DİZAYN</span>
+      <h1>Sosial medianı <span>pula</span> çevirməyi öyrən</h1>
+      <p>Salia Media ilə SMM, Mobiloqrafiya, Qrafik Dizayn və Digital Marketing sahələrində praktiki bilik qazan, sertifikatını al və peşəkar SMM mütəxəssisi ol.</p>
+      <a href="https://wa.me/994556166220" target="_blank" rel="noopener" class="btn-primary">Kursa Qeydiyyatdan Keç</a>
+
+      <div class="hero-stats">
+        <div class="stat"><b>51K+</b><span>İzləyici</span></div>
+        <div class="stat"><b>242+</b><span>Paylaşım</span></div>
+        <div class="stat"><b>4</b><span>İxtisas sahəsi</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="ig-card">
+        <div class="ig-card-header">
+          <div class="ig-avatar">SM</div>
+          <div>
+            <h4>salia_media</h4>
+            <p>SMM · Mobilography · Design</p>
+          </div>
+        </div>
+        <div class="ig-followers">
+          <div><b>242</b><span>Paylaşım</span></div>
+          <div><b>51K</b><span>İzləyici</span></div>
+          <div><b>2</b><span>İzlədiyi</span></div>
+        </div>
+        <p style="font-size:13px;color:#555;">"📌SMM courses 📌Digital Marketing 📌Mobilography 📌Graphic Design ☎️ WhatsApp"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-title">
+      <p class="tag">Xidmətlərimiz</p>
+      <h2>Nə <span>öyrədirik?</span></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h3>SMM</h3>
+        <p>Instagram, TikTok və Facebook səhifələrinin idarə edilməsi, kontent planı və analitika.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎬</div>
+        <h3>Mobiloqrafiya</h3>
+        <p>Telefonla peşəkar foto/video çəkiliş, montaj və işıqlandırma texnikaları.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <h3>Qrafik Dizayn</h3>
+        <p>Post, karusel və hekayə dizaynı üçün vizual alətlərin praktiki tədrisi.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Digital Marketing</h3>
+        <p>Reklam kampaniyaları, hədəf auditoriya seçimi və büdcə idarəçiliyi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section id="program" style="background:#ffffff !important;color:#111111 !important;">
+  <div class="container program">
+    <div class="program-list">
+      <div class="section-title" style="text-align:left;margin-bottom:30px;">
+        <p class="tag">Kurs Proqramı</p>
+        <h2>Nə <span>qazanacaqsan?</span></h2>
+      </div>
+      <ul>
+        <li><div class="check">✓</div> Sosial Media Marketinqin əsasları və strategiya qurulması</li>
+        <li><div class="check">✓</div> Instagram və Facebook səhifələrinin peşəkar idarə edilməsi</li>
+        <li><div class="check">✓</div> Effektiv reklam (Ads) qurulması və büdcə planlaması</li>
+        <li><div class="check">✓</div> Kontent planı, copywriting və vizual dizayn bacarıqları</li>
+        <li><div class="check">✓</div> Analitika: nəticələrin ölçülməsi və hesabatlıq</li>
+        <li><div class="check">✓</div> Kurs sonunda rəsmi sertifikat</li>
+      </ul>
+    </div>
+    <div class="program-box">
+      <h3>SMM Kursu</h3>
+      <p style="color:#ccc;font-size:14px;">Fərdi və qrup formatında, online/əyani</p>
+      <div class="price">1 ay <span>/ tədris müddəti</span></div>
+      <ul>
+        <li>✔ Online dərslər</li>
+        <li>✔ Ev tapşırıqları və praktika</li>
+        <li>✔ Real layihələr üzərində iş</li>
+        <li>✔ Kurs sonunda sertifikat</li>
+      </ul>
+      <a href="https://wa.me/994556166220" target="_blank" rel="noopener" class="btn-primary" style="width:100%;text-align:center;display:block;">Ətraflı Məlumat Al</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="container">
+    <div class="section-title">
+      <p class="tag">Rəylər</p>
+      <h2>Tələbələrimiz <span>nə deyir?</span></h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p>Kursdan sonra öz brendimin Instagram səhifəsini özüm idarə etməyə başladım. Çox praktiki və izahlı keçirilir.</p>
+        <div class="test-user">
+          <div class="test-avatar">A</div>
+          <div><h5>Tələbə rəyi</h5><span>SMM Kursu</span></div>
+        </div>
+      </div>
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p>Mobiloqrafiya dərslərində telefonla belə peşəkar video çəkməyi öyrəndim. Gözləntilərimi keçdi.</p>
+        <div class="test-user">
+          <div class="test-avatar">N</div>
+          <div><h5>Tələbə rəyi</h5><span>Mobiloqrafiya</span></div>
+        </div>
+      </div>
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p>Reklam kampaniyası qurmağı, büdcəni idarə etməyi real nümunələr üzərində öyrəndik. Tövsiyə edirəm.</p>
+        <div class="test-user">
+          <div class="test-avatar">R</div>
+          <div><h5>Tələbə rəyi</h5><span>SMM</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo" style="color:var(--white);">SALIA<span style="color:var(--yellow);">.</span>MEDIA</div>
+  <div class="footer-links">
+    <a href="#services">Xidmətlər</a>
+    <a href="#program">Proqram</a>
+    <a href="#reviews">Rəylər</a>
+    <a href="https://wa.me/994556166220" target="_blank" rel="noopener">Qeydiyyat</a>
+  </div>
+  <p>© 2026 Salia Media. Bütün hüquqlar qorunur.</p>
+</footer>
+
+<script>
+  // close mobile menu when a link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link=>{
+    link.addEventListener('click',()=>{
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
